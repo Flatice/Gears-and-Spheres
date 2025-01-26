@@ -312,7 +312,6 @@ GameObject:
   m_Component:
   - component: {fileID: 461411475711291180}
   - component: {fileID: 6125050643478822164}
-  - component: {fileID: 2177745078877447854}
   m_Layer: 0
   m_Name: Basket
   m_TagString: Left
@@ -384,15 +383,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9883038, y: 0.3370118}
   m_EdgeRadius: 0
---- !u!114 &2177745078877447854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7843815090960462897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27fdefb9f5dc2de43bed0ae3f197269d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

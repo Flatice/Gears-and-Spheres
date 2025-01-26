@@ -16,7 +16,30 @@ public class BallBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // destroy object if out of bounds
         if (Mathf.Abs(transform.position.x) > boundX || Mathf.Abs(transform.position.y) > boundY)
             Destroy(gameObject);
+    }
+
+    protected void DestroyOutOfBounds()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        EnteredBasket(collision.gameObject.tag); // ABSTRACTION
+    }
+
+    protected virtual void EnteredBasket(string tag)
+    {
+        if (gameObject.tag == tag)
+        {
+            GameManager.instance.UpdateScore(1);
+        }
+        else
+        {
+            Debug.Log("Wrong basket!");
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }  // this object is a singleton
+    public static GameManager instance { get; private set; }  // ENCAPSULATION
 
     public int score = 0;
     public bool gameOver = false;
@@ -25,17 +25,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
         scoreText = GameObject.Find("Text Score").GetComponent<TMP_Text>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void UpdateScore(int scoreIncrease = 1)
