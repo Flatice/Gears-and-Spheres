@@ -25,7 +25,7 @@ public class PlatformController : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButton(0))
-            ChangeRotation();
+            ChangeRotation();  // ABSTRACTION 
     }
     
     private void ChangeRotation()
@@ -36,7 +36,7 @@ public class PlatformController : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         
         // Normalizing the position to be within the limit angles of rotation
-        rotation = MousePositionNormalized(mouseWorldPosition.y, -rotationLimit, rotationLimit);
+        rotation = MousePositionNormalized(mouseWorldPosition.y, -rotationLimit, rotationLimit);  // ABSTRACTION 
 
         foreach (GameObject obj in rotatingObjects)
         {            

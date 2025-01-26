@@ -21,11 +21,6 @@ public class BallBehaviour : MonoBehaviour
             Destroy(gameObject);
     }
 
-    protected void DestroyOutOfBounds()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EnteredBasket(collision.gameObject.tag); // ABSTRACTION

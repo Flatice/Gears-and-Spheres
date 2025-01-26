@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainbowBallBehaviour : BallBehaviour
+public class RainbowBallBehaviour : BallBehaviour  // INHERITANCE
 {
     SpriteRenderer spriteRenderer;
     float hue = 0f;
@@ -31,7 +31,7 @@ public class RainbowBallBehaviour : BallBehaviour
             GoOutwards(); // ABSTRACTION 
     }
 
-    protected override void EnteredBasket(string tag)
+    protected override void EnteredBasket(string tag)  // POLYMORPHISM
     {
         GameManager.instance.UpdateScore(3);
     }

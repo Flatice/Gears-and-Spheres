@@ -36,4 +36,10 @@ public class GameManager : MonoBehaviour
         score += scoreIncrease;
         scoreText.SetText("Score: " + score);
     }
+
+    public void GameOver()
+    {
+        gameOver = true;
+        Debug.LogError("Game Over");
+    }
 }
