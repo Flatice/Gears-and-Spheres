@@ -30,7 +30,7 @@ public class BallBehaviour : MonoBehaviour
     {
         if (gameObject.tag == tag)
         {
-            GameManager.instance.UpdateScore(1);
+            GameManager.Instance.UpdateScore(1);
         }
         else
         {

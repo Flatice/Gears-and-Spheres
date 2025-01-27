@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: nTeeth
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 6185422925950743957, guid: c4ffefa4d99bde441b96f496f98d02a8, type: 3}
+      propertyPath: m_Radius
+      value: 0.9893072
+      objectReference: {fileID: 0}
     - target: {fileID: 7458334656564699491, guid: c4ffefa4d99bde441b96f496f98d02a8, type: 3}
       propertyPath: m_Name
       value: Gear 18

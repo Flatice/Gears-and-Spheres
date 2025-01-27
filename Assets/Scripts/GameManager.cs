@@ -2,25 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }  // ENCAPSULATION
+    public static GameManager Instance { get; private set; }  // ENCAPSULATION
+
+    UIManager uiManager;
 
     public int score = 0;
     public bool gameOver = false;
+    GameObject floor;
 
     TMP_Text scoreText;
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -28,7 +35,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        floor = GameObject.Find("Floor");
         scoreText = GameObject.Find("Text Score").GetComponent<TMP_Text>();
+
+        floor.SetActive(false);
     }
 
     public void UpdateScore(int scoreIncrease = 1)
@@ -40,6 +51,27 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
-        Debug.LogError("Game Over");
+        floor.SetActive(true);
+        uiManager.GameOverScreen();  // ABSTRACTION
+    }
+
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
+    }
+
+    public void LoadScene(int sceneId)
+    {
+        SceneManager.LoadScene(sceneId);
+    }
+
+    private void Update()
+    {
+        // just as temporary debug (TODO: deleate)
+        if (Input.GetKeyDown(KeyCode.Escape)) GameOver();
     }
 }

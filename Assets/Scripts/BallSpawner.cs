@@ -23,7 +23,7 @@ public class BallSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(startDelay);
 
-        while (!GameManager.instance.gameOver)
+        while (!GameManager.Instance.gameOver)
         {
             int ballIndex = Random.Range(0, ballPrefab.Length);
 
