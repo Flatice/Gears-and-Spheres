@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 99210387}
   - component: {fileID: 99210386}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
