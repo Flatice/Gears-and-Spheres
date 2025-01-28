@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     UIManager uiManager;
 
     public int score = 0;
-    public bool gameOver = false;
+    public bool gameOver = false, isPaused = true;
     GameObject floor;
 
     TMP_Text scoreText;
@@ -32,9 +32,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    // since GameManager is a sigleton and persists between scenes, I added this method that executes every time the scene is loaded
+    // the method is called by SceneController.Start()
+    public void InitializeScene()
     {
+        gameOver = false;
+        isPaused = true;
+
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         floor = GameObject.Find("Floor");
         scoreText = GameObject.Find("Text Score").GetComponent<TMP_Text>();
@@ -48,11 +52,20 @@ public class GameManager : MonoBehaviour
         scoreText.SetText("Score: " + score);
     }
 
+    public void StartGame()
+    {
+        uiManager.StartGameAnimation();  // ABSTRACTION
+        isPaused = false;
+    }
+
     public void GameOver()
     {
-        gameOver = true;
-        floor.SetActive(true);
-        uiManager.GameOverScreen();  // ABSTRACTION
+        if (!gameOver)
+        {
+            gameOver = true;
+            floor.SetActive(true);
+            uiManager.GameOverScreen();  // ABSTRACTION
+        }
     }
 
     public void QuitGame()

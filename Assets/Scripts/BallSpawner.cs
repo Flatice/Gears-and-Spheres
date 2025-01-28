@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
@@ -25,6 +26,9 @@ public class BallSpawner : MonoBehaviour
 
         while (!GameManager.Instance.gameOver)
         {
+            while (GameManager.Instance.isPaused)
+                yield return null;
+
             int ballIndex = Random.Range(0, ballPrefab.Length);
 
             Instantiate(ballPrefab[ballIndex], spawnPosition, ballPrefab[ballIndex].transform.rotation);

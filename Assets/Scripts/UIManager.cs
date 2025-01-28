@@ -6,25 +6,47 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    GameObject gameOverScreen, startMenu, pauseMenu;
-    Button buttonStartGame; 
+
+
+    public static UIManager Instance { get; private set; }  // ENCAPSULATION
+
+    public GameObject gameOverScreen, startMenu, pauseMenu;
 
     [SerializeField]
     float gameOverDelayTime = 1f;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        gameOverScreen = transform.Find("Game Over Screen").gameObject;
-        startMenu = transform.Find("Menu Start").gameObject;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
-        buttonStartGame = startMenu.transform.Find("Button start game").gameObject.GetComponent<Button>();
-        // FIXME: useless here I think, use OnPointerDown in a script attached to the Button
-        
+
+    // since UIManager is a sigleton and persists between scenes, I added this method that executes every time the scene is loaded
+    // the method is called by SceneController.Start()
+    public void InitializeScene()
+    {
         // all menus exists at startup, they are activated and deactivated wheen needed
         gameOverScreen.SetActive(false);
-        // Menu Start is already active at startup
+        startMenu.SetActive(true);
+    }
 
+    public void StartGameAnimation()
+    {
+        if (startMenu != null)
+            startMenu.SetActive(false);
+        else
+        {
+            startMenu = transform.Find("Menu Start").gameObject;
+            startMenu.SetActive(false);
+        }
     }
 
     public void GameOverScreen()
