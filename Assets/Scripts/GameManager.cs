@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +13,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }  // ENCAPSULATION
 
     UIManager uiManager;
+    TMP_Text scoreText;
 
-    public int score = 0;
+    public int score = 0, highScore = 0;
     public bool gameOver = false, isPaused = true;
     GameObject floor;
 
-    TMP_Text scoreText;
+    string savePath;
 
     void Awake()
     {
@@ -30,6 +32,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        savePath = Application.persistentDataPath + "/savefile.json";
+        LoadGame();
     }
 
     // since GameManager is a sigleton and persists between scenes, I added this method that executes every time the scene is loaded
@@ -50,6 +55,9 @@ public class GameManager : MonoBehaviour
     {
         score += scoreIncrease;
         scoreText.SetText("Score: " + score);
+
+        if (score > highScore)
+            highScore = score;
     }
 
     public void StartGame()
@@ -65,11 +73,14 @@ public class GameManager : MonoBehaviour
             gameOver = true;
             floor.SetActive(true);
             uiManager.GameOverScreen();  // ABSTRACTION
+            SaveGame();
         }
     }
 
     public void QuitGame()
     {
+        SaveGame();
+
         #if UNITY_EDITOR
             EditorApplication.ExitPlaymode();
         #else
@@ -86,5 +97,32 @@ public class GameManager : MonoBehaviour
     {
         // just as temporary debug (TODO: deleate)
         if (Input.GetKeyDown(KeyCode.Escape)) GameOver();
+    }
+
+
+    class SaveData
+    {
+        public int highScore;
+    }
+
+    public void SaveGame()
+    {
+        SaveData data = new SaveData();
+        data.highScore = highScore;
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(savePath, json);
+        Debug.Log(savePath);
+    }
+
+    public void LoadGame()
+    {
+        if (File.Exists(savePath))
+        {
+            string json = File.ReadAllText(savePath);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            highScore = data.highScore;
+        }
     }
 }

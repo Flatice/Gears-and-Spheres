@@ -10,7 +10,10 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance { get; private set; }  // ENCAPSULATION
 
-    public GameObject gameOverScreen, startMenu, pauseMenu;
+    [SerializeField]
+    GameObject gameOverScreen, startMenu, pauseMenu;
+    [SerializeField]
+    TMP_Text scoreText, highScoreText;
 
     [SerializeField]
     float gameOverDelayTime = 1f;
@@ -58,5 +61,7 @@ public class UIManager : MonoBehaviour
     {
         // TODO: Game over screen animation
         gameOverScreen.SetActive(true);
+        scoreText.SetText("Your score: " + GameManager.Instance.score);
+        highScoreText.SetText("High score: " + GameManager.Instance.highScore);
     }
 }
