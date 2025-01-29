@@ -11,5 +11,15 @@ public class BombBehaviour : BallBehaviour // INHERITANCE
         GameManager.Instance.GameOver();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bomb")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            // TODO: add animation
+        }
+    }
+
 
 }

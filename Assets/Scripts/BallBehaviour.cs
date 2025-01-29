@@ -23,7 +23,8 @@ public class BallBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EnteredBasket(collision.gameObject.tag); // ABSTRACTION
+        if (!GameManager.Instance.gameOver)
+            EnteredBasket(collision.gameObject.tag); // ABSTRACTION
     }
 
     protected virtual void EnteredBasket(string tag)

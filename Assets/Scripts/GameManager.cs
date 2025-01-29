@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         // reset game state
         gameOver = false;
         isPaused = true;
+        Time.timeScale = 1;
 
         // reset score
         score = 0;

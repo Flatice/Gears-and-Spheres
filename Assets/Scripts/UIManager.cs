@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     TMP_Text menuTitle, scoreText, highScoreText;
 
-    Image buttonSprite;
+    ToggleChangeSprite buttonSprite;
 
     [SerializeField]
     float delayTime = 1f;
@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
         startMenu.SetActive(true);
         pauseResumeButton.SetActive(false);
         
+        buttonSprite = pauseResumeButton.GetComponent<ToggleChangeSprite>();
     }
 
     public void StartGameAnimation()
@@ -54,19 +55,18 @@ public class UIManager : MonoBehaviour
     public void PauseMenu()
     {
         StartCoroutine(GameMenu("PAUSE", 0));
-        pauseResumeButton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().SetText("R");
-        // TODO: change sprite to resume sprite and deleate this line ^^^
+        buttonSprite.ChangeSprite();
     }
 
     public void HideGameMenu()
     {
         gameMenu.SetActive(false);
-        pauseResumeButton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().SetText("P");
-        // TODO: change sprite to pause sprite and deleate this line ^^^
+        buttonSprite.ChangeSprite();
     }
 
     public void GameOverScreen()
     {
+        pauseResumeButton.SetActive(false);
         StartCoroutine(GameMenu("GAME OVER", delayTime));
     }
 
