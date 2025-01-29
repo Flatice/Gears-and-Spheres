@@ -11,12 +11,14 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }  // ENCAPSULATION
 
     [SerializeField]
-    GameObject gameOverScreen, startMenu, pauseMenu;
+    GameObject gameMenu, startMenu, pauseResumeButton;
     [SerializeField]
-    TMP_Text scoreText, highScoreText;
+    TMP_Text menuTitle, scoreText, highScoreText;
+
+    Image buttonSprite;
 
     [SerializeField]
-    float gameOverDelayTime = 1f;
+    float delayTime = 1f;
 
     void Awake()
     {
@@ -37,30 +39,44 @@ public class UIManager : MonoBehaviour
     public void InitializeScene()
     {
         // all menus exists at startup, they are activated and deactivated wheen needed
-        gameOverScreen.SetActive(false);
+        gameMenu.SetActive(false);
         startMenu.SetActive(true);
+        pauseResumeButton.SetActive(false);
+        
     }
 
     public void StartGameAnimation()
     {
-        if (startMenu != null)
-            startMenu.SetActive(false);
-        else
-        {
-            startMenu = transform.Find("Menu Start").gameObject;
-            startMenu.SetActive(false);
-        }
+        startMenu.SetActive(false);
+        pauseResumeButton.SetActive(true);
+    }
+
+    public void PauseMenu()
+    {
+        StartCoroutine(GameMenu("PAUSE", 0));
+        pauseResumeButton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().SetText("R");
+        // TODO: change sprite to resume sprite and deleate this line ^^^
+    }
+
+    public void HideGameMenu()
+    {
+        gameMenu.SetActive(false);
+        pauseResumeButton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().SetText("P");
+        // TODO: change sprite to pause sprite and deleate this line ^^^
     }
 
     public void GameOverScreen()
     {
-        Invoke("GameOverAnimation", gameOverDelayTime);
+        StartCoroutine(GameMenu("GAME OVER", delayTime));
     }
 
-    private void GameOverAnimation()
+    IEnumerator GameMenu(string titleText, float delayTime)
     {
+        yield return new WaitForSeconds(delayTime);
+
         // TODO: Game over screen animation
-        gameOverScreen.SetActive(true);
+        gameMenu.SetActive(true);
+        menuTitle.SetText(titleText);
         scoreText.SetText("Your score: " + GameManager.Instance.score);
         highScoreText.SetText("High score: " + GameManager.Instance.highScore);
     }

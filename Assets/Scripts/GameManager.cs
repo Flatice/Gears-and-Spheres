@@ -41,12 +41,17 @@ public class GameManager : MonoBehaviour
     // the method is called by SceneController.Start()
     public void InitializeScene()
     {
-        gameOver = false;
-        isPaused = true;
-
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         floor = GameObject.Find("Floor");
         scoreText = GameObject.Find("Text Score").GetComponent<TMP_Text>();
+
+        // reset game state
+        gameOver = false;
+        isPaused = true;
+
+        // reset score
+        score = 0;
+        UpdateScore(0);
 
         floor.SetActive(false);
     }
@@ -64,6 +69,26 @@ public class GameManager : MonoBehaviour
     {
         uiManager.StartGameAnimation();  // ABSTRACTION
         isPaused = false;
+    }
+
+    public void PauseResumeGame()
+    {        
+        if (!gameOver)
+        {
+            if (isPaused)   // resume game
+            {
+                isPaused = false;
+                uiManager.HideGameMenu();  // ABSTRACTION
+                Time.timeScale = 1;
+            }
+            else            // pause game
+            {
+                isPaused = true;
+                uiManager.PauseMenu();  // ABSTRACTION
+                Time.timeScale = 0;
+            }
+            
+        }
     }
 
     public void GameOver()
@@ -97,6 +122,7 @@ public class GameManager : MonoBehaviour
     {
         // just as temporary debug (TODO: deleate)
         if (Input.GetKeyDown(KeyCode.Escape)) GameOver();
+        if (Input.GetKeyDown(KeyCode.Space)) PauseResumeGame();
     }
 
 
@@ -112,7 +138,6 @@ public class GameManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(savePath, json);
-        Debug.Log(savePath);
     }
 
     public void LoadGame()
