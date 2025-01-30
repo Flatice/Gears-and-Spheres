@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class BombBehaviour : BallBehaviour // INHERITANCE
 {
+    [SerializeField]
+    GameObject explosion;
 
-    protected override void EnteredBasket(string tag)
+    protected override void EnteredBasket(GameObject basket)
     {
-        Debug.Log("BOOM!");  // TODO: explosion animation
         GameManager.Instance.GameOver();
+        Explode(new Vector2(basket.transform.position.x, transform.position.y));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bomb")
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-            // TODO: add animation
+            Explode(transform.position);
         }
     }
 
-
+    private void Explode(Vector2 explosionLocation)
+    {
+        Instantiate(explosion, explosionLocation, explosion.transform.rotation);
+        Destroy(gameObject);
+    }
 }

@@ -31,9 +31,9 @@ public class RainbowBallBehaviour : BallBehaviour  // INHERITANCE
             GoOutwards(); // ABSTRACTION 
     }
 
-    protected override void EnteredBasket(string tag)  // POLYMORPHISM
+    protected override void EnteredBasket(GameObject basket)  // POLYMORPHISM
     {
-        GameManager.Instance.UpdateScore(3);
+        GameManager.Instance.UpdateScore(2);
     }
 
     private void ChangeColor()

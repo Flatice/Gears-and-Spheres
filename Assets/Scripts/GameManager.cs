@@ -4,6 +4,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,12 +13,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }  // ENCAPSULATION
 
-    UIManager uiManager;
-    TMP_Text scoreText;
-
     public int score = 0, highScore = 0;
     public bool gameOver = false, isPaused = true;
+
+    UIManager uiManager;
+    TMP_Text scoreText;
     GameObject floor;
+    Camera mainCamera;
 
     string savePath;
 
@@ -41,9 +43,10 @@ public class GameManager : MonoBehaviour
     // the method is called by SceneController.Start()
     public void InitializeScene()
     {
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        uiManager = UIManager.Instance;
         floor = GameObject.Find("Floor");
         scoreText = GameObject.Find("Text Score").GetComponent<TMP_Text>();
+        mainCamera = Camera.main;
 
         // reset game state
         gameOver = false;
@@ -96,6 +99,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
+            mainCamera.transform.DOShakePosition(0.5f, 0.35f);
             gameOver = true;
             floor.SetActive(true);
             uiManager.GameOverScreen();  // ABSTRACTION

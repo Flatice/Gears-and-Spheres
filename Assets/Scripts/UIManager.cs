@@ -74,7 +74,6 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
 
-        // TODO: Game over screen animation
         gameMenu.SetActive(true);
         menuTitle.SetText(titleText);
         scoreText.SetText("Your score: " + GameManager.Instance.score);

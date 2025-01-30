@@ -9,18 +9,13 @@ public class ToggleChangeSprite : MonoBehaviour
     Sprite[] sprites;
 
     Image currentSprite;
-    public int spriteIndex = 0;
+    int spriteIndex = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentSprite = GetComponent<Image>();
-        currentSprite.sprite = sprites[0];
-    }
-
+    // I do it on OnEnable so I'm sure that it gets executed every time I reactivate the object and 
+    // because otherwise I would split the logic between OnEnable and Start risking a Null reference
     private void OnEnable()
     {
-        Debug.Log("test");
+        currentSprite = GetComponent<Image>();
         spriteIndex = 0;
         currentSprite.sprite = sprites[0];
     }
