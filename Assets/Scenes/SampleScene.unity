@@ -4868,24 +4868,88 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights1.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights2.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights3.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.ballPrefab.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights.Array.data[0]
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights.Array.data[1]
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights.Array.data[2]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights.Array.data[4]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.scoreCutoff.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights1.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights1.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights1.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights2.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights2.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights2.Array.data[2]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights2.Array.data[3]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights3.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights3.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights3.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights3.Array.data[3]
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.ballPrefab.Array.data[0]
@@ -4903,6 +4967,22 @@ PrefabInstance:
       propertyPath: ballSelection.ballPrefab.Array.data[3]
       value: 
       objectReference: {fileID: 9100000927106880588, guid: b9d1311bf5a546848bc26272f736c9d9, type: 3}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.ballPrefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 9100000927106880588, guid: b9d1311bf5a546848bc26272f736c9d9, type: 3}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.scoreCutoff.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.scoreCutoff.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.scoreCutoff.Array.data[2]
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5985625185327541915, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: m_Name
       value: Ball Spawner

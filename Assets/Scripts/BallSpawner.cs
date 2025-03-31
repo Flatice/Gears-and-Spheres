@@ -3,26 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using Random = UnityEngine.Random;
 
 public class BallSpawner : MonoBehaviour
 {
     [System.Serializable]
-    public struct BallSelection
+    public class BallSelection
     {
         public GameObject[] ballPrefab;
-        public int[] weights;
-
-        public BallSelection(GameObject[] ballPrefab, int[] weights)
-        {
-            this.weights = weights;
-            this.ballPrefab = ballPrefab;
-        }
+        public int[] weights1, weights2, weights3;
+        public int[] scoreCutoff = new int[2];
 
         public void Validate()
         {
-            if (Array.Exists(weights, w => w < 0))
-                Debug.LogError("Weight can't be negative");
+            List<string> errors = new List<string>();
+
+            int[] weightsTotal = weights1.Concat(weights2).Concat(weights3).ToArray();
+            if (Array.Exists(weightsTotal, w => w < 0))
+                errors.Add("Weight can't be negative");
+
+            int prefabCount = ballPrefab.Length;
+            if (weights1.Length != prefabCount)
+                errors.Add($"The number of weights in weights1 ({weights1.Length}) must be the same as the number of balls ({prefabCount})");
+            if (weights2.Length != prefabCount)
+                errors.Add($"The number of weights in weights2 ({weights2.Length}) must be the same as the number of balls ({prefabCount})");
+            if (weights3.Length != prefabCount)
+                errors.Add($"The number of weights in weights3 ({weights3.Length}) must be the same as the number of balls ({prefabCount})");
+        
+            if (errors.Count > 0)
+                throw new ArgumentException("Error in initialization of balls weights\n" + string.Join("\n", errors));
         }
     }
     public BallSelection ballSelection;
@@ -31,21 +41,23 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private float startDelay = 0f;
     [SerializeField] private float initialRepeatRate = 2f, repeatRate;
 
-    private void OnValidate()
-    {
-        ballSelection.Validate();
-    }
-
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnPosition = transform.position;
-        
-        for (int j = 1; j <= (int)ballSelection.weights.Sum(); j++)
+        // Validate BallSelection to ensure teh correct initializaion of weights
+        try
         {
-            BallToSpawnTest(j);
+            ballSelection.Validate();
         }
+        catch (ArgumentException e)
+        {
+            Debug.LogError(e.Message);
+            enabled = false;  // disabling the script prevents further execution and unexpected errors
+            return;
+        }
+
+        spawnPosition = transform.position;
 
         StartCoroutine(SpawnBall(startDelay, initialRepeatRate));
     }
@@ -74,12 +86,18 @@ public class BallSpawner : MonoBehaviour
 
     private GameObject BallToSpawn()
     {
-        int randomSelect = Random.Range(1, ballSelection.weights.Sum() + 1);
+        // change the probability of spawning special balls when the score increases to add difficulty
+        int[] weights;
+        if (GameManager.Instance.score >= ballSelection.scoreCutoff[1]) weights = ballSelection.weights3;
+        else if (GameManager.Instance.score >= ballSelection.scoreCutoff[0]) weights = ballSelection.weights2;
+        else weights = ballSelection.weights1;
+
+        int randomSelect = Random.Range(1, weights.Sum() + 1);
 
         int cumSum = 0;
-        for (int i = 0; i <= ballSelection.ballPrefab.Length; i++)
+        for (int i = 0; i < ballSelection.ballPrefab.Length; i++)
         {
-            cumSum += ballSelection.weights[i];
+            cumSum += weights[i];
 
             if (randomSelect <= cumSum)
                 return ballSelection.ballPrefab[i];
@@ -95,11 +113,11 @@ public class BallSpawner : MonoBehaviour
         int cumSum = 0;
         for (int i = 0; i <= ballSelection.ballPrefab.Length; i++)
         {
-            cumSum += ballSelection.weights[i];
+            cumSum += ballSelection.weights1[i];
 
             if (randomSelect <= cumSum)
             {
-                Debug.Log($"r = {randomSelect}, ball = {ballSelection.ballPrefab[i].name}, weight = {ballSelection.weights[i]}");
+                Debug.Log($"r = {randomSelect}, ball = {ballSelection.ballPrefab[i].name}, weight = {ballSelection.weights1[i]}");
                 return;
             }            
         }
