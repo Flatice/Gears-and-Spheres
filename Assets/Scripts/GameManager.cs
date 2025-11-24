@@ -125,9 +125,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // just as temporary debug (TODO: deleate)
-        if (Input.GetKeyDown(KeyCode.Escape)) GameOver();
-        if (Input.GetKeyDown(KeyCode.Space)) PauseResumeGame();
+        if (Input.GetKeyDown(KeyCode.Escape)) PauseResumeGame();
+        // just for debugging purposes:
+        // if (Input.GetKeyDown(KeyCode.Space)) GameOver();
     }
 
 

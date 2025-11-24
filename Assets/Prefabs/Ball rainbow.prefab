@@ -82,5 +82,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda7f0b822d2cb3418eb17e7d4abd917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  colorChangeSpeed: 0.8
   forceStrength: 8.5

@@ -27,10 +27,4 @@ public class RotationBehaviour : MonoBehaviour
         initialRotation = transform.rotation;
         nTeeth = _nTeeth;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

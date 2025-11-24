@@ -10,10 +10,4 @@ public class SceneController : MonoBehaviour
         GameManager.Instance.InitializeScene();
         UIManager.Instance.InitializeScene();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

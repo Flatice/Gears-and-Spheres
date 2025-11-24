@@ -4913,7 +4913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights1.Array.data[1]
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights1.Array.data[2]
@@ -4936,6 +4936,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights2.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights3.Array.data[0]
       value: 10
       objectReference: {fileID: 0}
@@ -4949,6 +4953,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
       propertyPath: ballSelection.weights3.Array.data[3]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}
+      propertyPath: ballSelection.weights3.Array.data[4]
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3081572616243234410, guid: 63cd862c9ab56f345a59334e5c152f77, type: 3}

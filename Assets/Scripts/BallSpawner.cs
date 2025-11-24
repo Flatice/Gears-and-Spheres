@@ -15,7 +15,7 @@ public class BallSpawner : MonoBehaviour
         public int[] weights1, weights2, weights3;
         public int[] scoreCutoff = new int[2];
 
-        public void Validate()
+        public void Validate()  // ENCAPSULATION
         {
             List<string> errors = new List<string>();
 
@@ -44,11 +44,12 @@ public class BallSpawner : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+
     {
-        // Validate BallSelection to ensure teh correct initializaion of weights
+        // Validate BallSelection to ensure the correct initializaion of weights
         try
         {
-            ballSelection.Validate();
+            ballSelection.Validate();  // ENCAPSULATION
         }
         catch (ArgumentException e)
         {
@@ -106,6 +107,7 @@ public class BallSpawner : MonoBehaviour
         return null;
     }
 
+    /*
     private void BallToSpawnTest(int j)
     {
         int randomSelect = j;
@@ -124,4 +126,5 @@ public class BallSpawner : MonoBehaviour
 
         Debug.Log("Something went wrong while selecting a ball to spawn. r = " + randomSelect);
     }
+    */
 }

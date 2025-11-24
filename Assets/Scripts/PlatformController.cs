@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    
+
     GameObject[] rotatingObjects;
 
     Bounds bounds;
 
-    public float rotation = 0;
+    public float rotation { get; private set; }  // ENCAPSULATION
     float rotationLimit = 30;
 
     // Start is called before the first frame update
