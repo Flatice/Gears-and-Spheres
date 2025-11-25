@@ -2654,7 +2654,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 76}
-  m_SizeDelta: {x: 579.1451, y: 144.7863}
+  m_SizeDelta: {x: 350, y: 144.7863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027042320
 MonoBehaviour:
@@ -2703,13 +2703,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63
-  m_fontSizeBase: 63
+  m_fontSize: 72
+  m_fontSizeBase: 65
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4444,7 +4444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b9285f38cf24e48bc5bc23ba1e8b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: 0
 --- !u!61 &2141210826
 BoxCollider2D:
   m_ObjectHideFlags: 0
